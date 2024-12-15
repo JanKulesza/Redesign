@@ -1,10 +1,8 @@
 import {
   Building2,
   CircleUser,
-  IconNode,
   LayoutGrid,
   LucideIcon,
-  LucideProps,
   MessageCircleMore,
   Star,
   Users,
@@ -12,12 +10,12 @@ import {
 import {
   SidebarHeader,
   SidebarContent,
-  SidebarGroup,
   SidebarFooter,
   Sidebar,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarProvider,
 } from "./ui/sidebar";
 import { Link } from "react-router";
 
@@ -27,7 +25,11 @@ type NavBarItem = {
   icon: LucideIcon;
 };
 
-const SideBar = () => {
+interface Props {
+  open: boolean;
+}
+
+const SideBar = ({ open }: Props) => {
   const items: NavBarItem[] = [
     { title: "Dashboard", url: "/dashboard", icon: LayoutGrid },
     { title: "Property", url: "/property", icon: Building2 },
@@ -38,27 +40,31 @@ const SideBar = () => {
   ];
 
   return (
-    <Sidebar className="p-3 absolute border-none bg-[#fdfdfd]">
-      <SidebarHeader />
-      <SidebarContent>
-        <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                asChild
-                className="p-5 py-6 rounded-xl hover:bg-[#485cec] hover:text-white"
-              >
-                <Link to={item.url}>
-                  <item.icon className="mr-2" />
-                  <span className="text-xl">{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarContent>
-      <SidebarFooter />
-    </Sidebar>
+    <SidebarProvider open={open} className="w-2/8">
+      <Sidebar className="p-3 w-64 border-none bg-[#fdfdfd] sm:block">
+        <SidebarHeader>
+          <h2 className="text-3xl w-1/5 text-zinc-900 mb-10">Redesign</h2>
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton
+                  asChild
+                  className="p-5 py-6 rounded-xl hover:bg-[#485cec] hover:text-white"
+                >
+                  <Link to={item.url}>
+                    <item.icon className="mr-2" />
+                    <span className="text-xl">{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarContent>
+        <SidebarFooter />
+      </Sidebar>
+    </SidebarProvider>
   );
 };
 
