@@ -41,7 +41,7 @@ const SideBar = () => {
   const { isMobile, setOpenMobile } = useSidebar();
   return (
     <Sidebar className="w-64 border-none">
-      <SidebarHeader className="p-8 bg-[#fdfdfd] sm:pr-2/5">
+      <SidebarHeader className="p-4 pb-8 bg-[#fdfdfd] sm:pr-2/5">
         <h2 className="text-4xl w-fit flex gap-2 font-semibold text-zinc-900 ">
           <img src={logo} alt="logo" />
           Redesign
