@@ -12,7 +12,7 @@ const SearchInput = () => {
           id="search"
           type="search"
           placeholder="Search..."
-          className="w-full border-0 bg-[#f4f4f4] text-zinc-900 pl-8"
+          className="w-full border-0 bg-secondary text-secondary-foreground pl-8"
         />
       </div>
     </div>

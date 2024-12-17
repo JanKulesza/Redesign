@@ -41,11 +41,11 @@ const SideBar = () => {
   const { isMobile, setOpenMobile } = useSidebar();
   return (
     <Sidebar className="w-64 border-none">
-      <SidebarHeader className="p-4 pb-8 bg-[#fdfdfd] sm:pr-2/5">
-        <h2 className="text-4xl w-fit flex gap-2 font-semibold text-zinc-900 ">
+      <SidebarHeader className="p-4 pb-8 sm:pr-2/5 bg-background">
+        <Link to={"/"} className="text-4xl w-fit flex gap-2 font-semibold">
           <img src={logo} alt="logo" />
           Redesign
-        </h2>
+        </Link>
         {isMobile && (
           <Button
             variant="ghost"
@@ -56,13 +56,13 @@ const SideBar = () => {
           </Button>
         )}
       </SidebarHeader>
-      <SidebarContent className="px-3 md:py-0 bg-[#fdfdfd]">
+      <SidebarContent className="px-3 md:py-0 bg-background">
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
-                className="p-5 py-6 rounded-xl hover:bg-[#485cec] focus:bg-[#485cec] focus:text-white hover:text-white"
+                className="p-5 py-6 rounded-xl  text-secondary-foreground hover:bg-[#485cec] focus:bg-[#485cec] focus:text-white hover:text-white"
               >
                 <Link to={item.url}>
                   <item.icon className="mr-2" />
@@ -74,7 +74,7 @@ const SideBar = () => {
         </SidebarMenu>
       </SidebarContent>
       {isMobile && (
-        <SidebarFooter className="py-8 md:py-0 px-3 w-full border-top-0 bg-[#fdfdfd]">
+        <SidebarFooter className="py-8 md:py-0 px-3 w-full border-top-0 bg-background">
           <SearchInput />
         </SidebarFooter>
       )}

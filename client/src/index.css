@@ -6,8 +6,10 @@
 @layer base {
   :root {
     /* Light Theme Colors */
-    --background: 0 0% 100%;
+    --background: 0 0 99;
     --foreground: 240 5.3% 26.1%;
+
+    --main: 0 0 96;
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -19,7 +21,7 @@
     --primary-foreground: 0 0% 98%;
 
     --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary-foreground: 255 7 55;
 
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -44,7 +46,7 @@
     --radius: 0.5rem;
 
     /* Sidebar Colors for Light Theme */
-    --sidebar-background: #fdfdfd;
+    --sidebar-background: #181;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
@@ -56,8 +58,10 @@
 
   .dark {
     /* Dark Theme Colors */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 204 9 11;
+    --foreground: 240 4.8% 95.9%;
+
+    --main: 0 9 9;
 
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -68,8 +72,8 @@
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
 
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 210 11 7;
+    --secondary-foreground: 220 5 46;
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
