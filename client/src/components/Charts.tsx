@@ -15,7 +15,7 @@ const Charts = () => {
   ];
 
   return (
-    <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-2">
+    <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-4">
       {items.map((item) => (
         <Chart key={item.title} item={item} />
       ))}

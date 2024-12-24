@@ -6,11 +6,6 @@ interface Props {
 }
 
 const Chart = ({ item }: Props) => {
-  const data = {
-    labels: ["Red", "Blue"],
-    values: [300, 65],
-  };
-
   return (
     <div className="flex bg-background w-full mb-5 lg:max-w-1/2 xl:w-full justify-between py-10 px-8 rounded-2xl">
       <div>

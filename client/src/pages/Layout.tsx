@@ -7,12 +7,12 @@ import { Outlet } from "react-router";
 const Layout = () => {
   return (
     <ThemeProvider>
-      <SidebarProvider className="flex h-screen w-full bg-main">
+      <SidebarProvider className="flex h-screen w-full">
         <SideBar />
 
         <div className="flex flex-col flex-1">
           <NavBar />
-          <div className="p-4 md:p-10 flex-1">
+          <div className="p-4 md:p-10 flex-1 bg-main">
             <Outlet />
           </div>
         </div>
