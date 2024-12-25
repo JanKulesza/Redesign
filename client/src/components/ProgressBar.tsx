@@ -5,7 +5,7 @@ interface Props {
 
 const ProgressBar = ({ color, percentage }: Props) => {
   return (
-    <div className="rounded w-full bg-secondary-foreground h-2 ">
+    <div className="rounded w-full bg-secondary h-2 ">
       <div
         className={` h-full rounded`}
         style={{

@@ -15,7 +15,7 @@ const Chart = ({ item }: Props) => {
       <ReactApexChart
         options={{
           chart: { type: "donut" },
-          colors: [item.color, "hsl(var(--secondary-foreground))"],
+          colors: [item.color, "hsl(var(--secondary))"],
           legend: { show: false },
           dataLabels: { enabled: false },
           stroke: { show: false },
