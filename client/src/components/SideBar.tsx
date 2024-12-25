@@ -62,7 +62,7 @@ const SideBar = () => {
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
-                className="p-5 py-6 rounded-xl  text-secondary-foreground hover:bg-[#485cec] focus:bg-[#485cec] focus:text-white hover:text-white"
+                className="p-5 py-6 rounded-xl  text-secondary-foreground hover:bg-theme focus:bg-theme focus:text-white hover:text-white"
               >
                 <Link to={item.url}>
                   <item.icon className="mr-2" />

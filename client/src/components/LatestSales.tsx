@@ -8,10 +8,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EllipsisVertical } from "lucide-react";
 import { Link } from "react-router";
-import AgentAvatar from "./AgentAvatar";
 import { Button } from "./ui/button";
 import { Property } from "@/entities/Property";
 import image from "@/assets/property.jpg";
+import PropertyAvatar from "./PropertyAvatar";
 
 const LatestSales = () => {
   const properties: Property[] = [
@@ -39,12 +39,6 @@ const LatestSales = () => {
       location: "North Carolina",
       price: 124,
     },
-    {
-      name: "Benny Chagur",
-      image: image,
-      location: "North Carolina",
-      price: 124,
-    },
   ];
 
   return (
@@ -55,18 +49,11 @@ const LatestSales = () => {
       <h3 className="font-semibold text-lg mb-8">Latest Sales</h3>
       <div className="flex flex-col gap-4">
         {properties.map((property) => (
-          <div className="flex justify-between">
-            <AgentAvatar entity={property} />
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <EllipsisVertical />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="mt-4">
-                <DropdownMenuLabel>{property.name}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+          <div className="flex justify-between items-center">
+            <PropertyAvatar property={property} />
+            <span className="text-theme text-xl font-semibold">
+              +${property.price}
+            </span>
           </div>
         ))}
       </div>

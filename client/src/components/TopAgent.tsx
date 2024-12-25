@@ -31,7 +31,7 @@ const TopAgent = () => {
       <div className="flex flex-col gap-4">
         {agents.map((agent) => (
           <div className="flex justify-between">
-            <AgentAvatar entity={agent} />
+            <AgentAvatar agent={agent} />
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <EllipsisVertical />

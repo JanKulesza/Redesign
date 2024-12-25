@@ -11,6 +11,8 @@
 
     --main: 0 0 96;
 
+    --theme: 233, 81, 60;
+
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
 
@@ -62,6 +64,8 @@
     --foreground: 240 4.8% 95.9%;
 
     --main: 0 9 9;
+
+    --theme: 233, 81, 60;
 
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;

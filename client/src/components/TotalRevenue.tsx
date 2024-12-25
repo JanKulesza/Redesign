@@ -100,11 +100,11 @@ const TotalRevenue = () => {
       <div className="flex flex-col md:flex-row px-6 md:-px-0 items-center mb-3">
         <p className="text-4xl font-semibold mr-4 lg:mr-16 mb-3">$236,535</p>
         <div className="flex items-center mb-3">
-          <div className="p-0.5 rounded-xl w-6 h-6 bg-[#485cec] mr-2">
+          <div className="p-0.5 rounded-xl w-6 h-6 bg-theme mr-2">
             <ArrowUp className="w-5 h-5 text-background" />
           </div>
           <div>
-            <p className="text-[#485cec] text-lg">0,8%</p>
+            <p className="text-theme text-lg">0,8%</p>
             <p className="text-secondary-foreground text-md">Than last Month</p>
           </div>
         </div>
