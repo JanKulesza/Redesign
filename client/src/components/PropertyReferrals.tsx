@@ -19,8 +19,8 @@ const PropertyReferrals = () => {
     <div className="bg-background xl:grid-cols-subgrid xl:col-span-2 p-8 rounded-2xl">
       <h3 className="font-semibold text-lg mb-5">Property Referrals</h3>
       {items.map((item) => (
-        <div className="flex flex-col mb-3" key={item.title}>
-          <div className="flex justify-between mb-2">
+        <div className="flex flex-col mb-3 xl:mb-8" key={item.title}>
+          <div className="flex justify-between mb-3">
             <span>{item.title}</span>
             <span>{item.percentage}</span>
           </div>
