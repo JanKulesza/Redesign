@@ -9,7 +9,7 @@ const Customer = () => {
       <Button variant="ghost" size="icon" className="absolute top-7 right-8 ">
         <Ellipsis />
       </Button>
-      <h3 className="font-semibold text-lg ml-6 md:ml-0 mb-1">Customer</h3>
+      <h3 className="font-semibold text-lg mb-1">Customer</h3>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <div>

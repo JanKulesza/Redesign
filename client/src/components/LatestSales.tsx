@@ -38,9 +38,12 @@ const LatestSales = () => {
         <Link to="/properties">View All</Link>
       </Button>
       <h3 className="font-semibold text-lg mb-8">Latest Sales</h3>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6">
         {properties.map((property) => (
-          <div className="flex justify-between items-center">
+          <div
+            key={property.name}
+            className="flex justify-between items-center"
+          >
             <PropertyAvatar property={property} />
             <span className="text-theme text-xl font-semibold">
               +${property.price}

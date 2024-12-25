@@ -19,7 +19,7 @@ const TopAgent = () => {
     { name: "Chynita Heree", image: image, position: "Top Agent" },
     { name: "David Yers", image: image, position: "Top Agent" },
     { name: "Hayder Jahid", image: image, position: "Top Agent" },
-    { name: "Benny Chagur", image: image, position: "Top Agent" },
+    { name: "Benny Chag", image: image, position: "Top Agent" },
   ];
 
   return (
@@ -28,9 +28,9 @@ const TopAgent = () => {
         <Link to="/agents">View All</Link>
       </Button>
       <h3 className="font-semibold text-lg mb-8">Top Agent</h3>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-5">
         {agents.map((agent) => (
-          <div className="flex justify-between">
+          <div key={agent.name} className="flex justify-between">
             <AgentAvatar agent={agent} />
             <DropdownMenu>
               <DropdownMenuTrigger>
