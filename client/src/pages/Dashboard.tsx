@@ -1,4 +1,5 @@
 import Charts from "@/components/Charts";
+import Customer from "@/components/Customer";
 import LatestSales from "@/components/LatestSales";
 import PropertyReferrals from "@/components/PropertyReferrals";
 import TopAgent from "@/components/TopAgent";
@@ -17,7 +18,7 @@ const Dashboard = () => {
       </div>
       <div className="grid xl:grid-cols-3 gap-4">
         <TopAgent />
-        <div className="relative bg-background rounded-2xl h-72 p-8"></div>
+        <Customer />
         <LatestSales />
       </div>
     </div>

@@ -23,11 +23,11 @@ import { Button } from "./ui/button";
 import SearchInput from "./SearchInput";
 import logo from "../assets/logo.svg";
 
-type NavBarItem = {
+interface NavBarItem {
   title: string;
   url: string;
   icon: LucideIcon;
-};
+}
 
 const SideBar = () => {
   const items: NavBarItem[] = [

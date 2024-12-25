@@ -15,7 +15,6 @@ export const TotalRevenueSeries: ApexAxisChartSeries = [
 
 export const TotalRevenueOptions: ApexOptions = {
   chart: {
-    id: "chart1",
     type: "bar",
     toolbar: {
       show: false,
@@ -86,3 +85,50 @@ export const TotalRevenueOptions: ApexOptions = {
     },
   ],
 };
+
+export const CustomersOptions: ApexOptions = {
+  chart: {
+    type: "bar",
+    toolbar: {
+      show: false, // Hide toolbar for simplicity
+    },
+  },
+  plotOptions: {
+    bar: {
+      columnWidth: "90%",
+      distributed: true,
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  xaxis: {
+    labels: {
+      show: false,
+    },
+
+    axisBorder: { show: false },
+    axisTicks: { show: false },
+  },
+  yaxis: {
+    labels: {
+      show: false,
+    },
+  },
+  legend: {
+    show: false,
+  },
+
+  grid: {
+    show: false,
+  },
+  tooltip: {
+    enabled: false,
+  },
+};
+
+export const CustomersSeries = [
+  {
+    data: [20, 40, 80, 48, 56], // Heights of bars
+  },
+];
