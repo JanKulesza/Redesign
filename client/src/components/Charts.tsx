@@ -1,10 +1,5 @@
 import Chart from "./Chart";
-
-export interface PieChartItem {
-  title: string;
-  value: number[];
-  color: string;
-}
+import { PieChartItem } from "../entities/PieChartItem";
 
 const Charts = () => {
   const items: PieChartItem[] = [

@@ -1,10 +1,5 @@
 import ProgressBar from "./ProgressBar";
-
-export interface PropertyReferralsItem {
-  title: string;
-  percentage: number;
-  color: string;
-}
+import { PropertyReferralsItem } from "../entities/PropertyReferralsItem";
 
 const PropertyReferrals = () => {
   //Fetching data =>

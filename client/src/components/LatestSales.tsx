@@ -1,12 +1,3 @@
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import { EllipsisVertical } from "lucide-react";
 import { Link } from "react-router";
 import { Button } from "./ui/button";
 import { Property } from "@/entities/Property";
