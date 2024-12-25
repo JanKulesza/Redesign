@@ -1,6 +1,6 @@
 import { Agent } from "@/entities/Agent";
 import { Button } from "./ui/button";
-import avatar from "@/assets/agent-placeholder.jpg";
+import image from "@/assets/agent-placeholder.jpg";
 import AgentAvatar from "./AgentAvatar";
 import {
   DropdownMenu,
@@ -15,11 +15,11 @@ import { Link } from "react-router";
 
 const TopAgent = () => {
   const agents: Agent[] = [
-    { name: "Benny Chagur", avatar: avatar, position: "Top Agent" },
-    { name: "Chynita Heree", avatar: avatar, position: "Top Agent" },
-    { name: "David Yers", avatar: avatar, position: "Top Agent" },
-    { name: "Hayder Jahid", avatar: avatar, position: "Top Agent" },
-    { name: "Benny Chagur", avatar: avatar, position: "Top Agent" },
+    { name: "Benny Chagur", image: image, position: "Top Agent" },
+    { name: "Chynita Heree", image: image, position: "Top Agent" },
+    { name: "David Yers", image: image, position: "Top Agent" },
+    { name: "Hayder Jahid", image: image, position: "Top Agent" },
+    { name: "Benny Chagur", image: image, position: "Top Agent" },
   ];
 
   return (
@@ -31,7 +31,7 @@ const TopAgent = () => {
       <div className="flex flex-col gap-4">
         {agents.map((agent) => (
           <div className="flex justify-between">
-            <AgentAvatar agent={agent} />
+            <AgentAvatar entity={agent} />
             <DropdownMenu>
               <DropdownMenuTrigger>
                 <EllipsisVertical />

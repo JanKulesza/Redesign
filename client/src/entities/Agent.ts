@@ -1,5 +1,5 @@
 export interface Agent {
-  avatar: string;
+  image: string;
   name: string;
   position: string;
 }
