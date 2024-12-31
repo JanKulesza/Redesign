@@ -39,6 +39,8 @@ export const TotalRevenueOptions: ApexOptions = {
     width: 4,
   },
   xaxis: {
+    axisTicks: { show: false },
+    axisBorder: { show: false },
     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
   },
   yaxis: {
@@ -90,7 +92,7 @@ export const CustomersOptions: ApexOptions = {
   chart: {
     type: "bar",
     toolbar: {
-      show: false, // Hide toolbar for simplicity
+      show: false,
     },
   },
   plotOptions: {
@@ -129,6 +131,6 @@ export const CustomersOptions: ApexOptions = {
 
 export const CustomersSeries = [
   {
-    data: [20, 40, 80, 48, 56], // Heights of bars
+    data: [20, 40, 80, 48, 56],
   },
 ];
