@@ -31,9 +31,9 @@ interface NavBarItem {
 
 const SideBar = () => {
   const items: NavBarItem[] = [
-    { title: "Dashboard", url: "/dashboard", icon: LayoutGrid },
-    { title: "Property", url: "/property", icon: Building2 },
-    { title: "Agent", url: "/agent", icon: Users },
+    { title: "Dashboard", url: "/", icon: LayoutGrid },
+    { title: "Property", url: "/properties", icon: Building2 },
+    { title: "Agent", url: "/agents", icon: Users },
     { title: "Review", url: "/review", icon: Star },
     { title: "Message", url: "/message", icon: MessageCircleMore },
     { title: "My profile", url: "/profile", icon: CircleUser },
