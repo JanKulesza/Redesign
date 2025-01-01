@@ -2,8 +2,11 @@ import { Ellipsis } from "lucide-react";
 import { Button } from "./ui/button";
 import ReactApexChart from "react-apexcharts";
 import { CustomersOptions, CustomersSeries } from "./config/chart";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Customer = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="relative bg-background rounded-2xl p-8">
       <Button variant="ghost" size="icon" className="absolute top-7 right-8 ">
@@ -26,8 +29,8 @@ const Customer = () => {
             }}
             series={CustomersSeries}
             type="bar"
-            height="150px"
-            width="250px"
+            height={"150px"}
+            width={isMobile ? "150px" : "250px"}
           />
         </div>
         <div className="h-[2px] bg-input mx-[-2rem] " />
@@ -50,8 +53,8 @@ const Customer = () => {
               },
             ]}
             type="bar"
-            height="150px"
-            width="250px"
+            height={"150px"}
+            width={isMobile ? "150px" : "250px"}
           />
         </div>
       </div>
