@@ -1,6 +1,6 @@
-import NavBar from "@/components/NavBar";
-import SideBar from "@/components/SideBar";
-import { ThemeProvider } from "@/components/theme-provider";
+import NavBar from "@/components/Layout/NavBar";
+import SideBar from "@/components/Layout/SideBar";
+import { ThemeProvider } from "@/components/Layout/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 

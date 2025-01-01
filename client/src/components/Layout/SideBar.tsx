@@ -17,11 +17,11 @@ import {
   SidebarMenuButton,
   useSidebar,
   SidebarFooter,
-} from "./ui/sidebar";
+} from "../ui/sidebar";
 import { Link } from "react-router";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import SearchInput from "./SearchInput";
-import logo from "../assets/logo.svg";
+import logo from "@/assets/logo.svg";
 
 interface NavBarItem {
   title: string;

@@ -6,13 +6,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Button } from "./ui/button";
-import { useSidebar } from "./ui/sidebar";
+} from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { useSidebar } from "../ui/sidebar";
 import SearchInput from "./SearchInput";
 import { ModeToggle } from "./ModeToggle";
-import avatar from "../assets/avatar.jpg";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import avatar from "@/assets/avatar.jpg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const NavBar = () => {
   const { isMobile, setOpenMobile } = useSidebar();
