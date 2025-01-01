@@ -1,5 +1,5 @@
 import Chart from "./Chart";
-import { PieChartItem } from "../entities/PieChartItem";
+import { PieChartItem } from "../../entities/PieChartItem";
 
 const Charts = () => {
   const items: PieChartItem[] = [

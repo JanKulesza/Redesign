@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Property } from "@/entities/Property";
 import image from "@/assets/property.jpg";
 import PropertyAvatar from "./PropertyAvatar";

@@ -1,9 +1,9 @@
-import Charts from "@/components/Charts";
-import Customer from "@/components/Customer";
-import LatestSales from "@/components/LatestSales";
-import PropertyReferrals from "@/components/PropertyReferrals";
-import TopAgent from "@/components/TopAgent";
-import TotalRevenue from "@/components/TotalRevenue";
+import Charts from "@/components/Dashboard/Charts";
+import Customer from "@/components/Dashboard/Customer";
+import LatestSales from "@/components/Dashboard/LatestSales";
+import PropertyReferrals from "@/components/Dashboard/PropertyReferrals";
+import TopAgent from "@/components/Dashboard/TopAgent";
+import TotalRevenue from "@/components/Dashboard/TotalRevenue";
 
 const Dashboard = () => {
   return (

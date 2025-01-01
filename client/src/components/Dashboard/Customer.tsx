@@ -1,7 +1,7 @@
 import { Ellipsis } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import ReactApexChart from "react-apexcharts";
-import { CustomersOptions, CustomersSeries } from "./config/chart";
+import { CustomersOptions, CustomersSeries } from "../config/chart";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const Customer = () => {

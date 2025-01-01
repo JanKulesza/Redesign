@@ -1,5 +1,5 @@
 import { Agent } from "@/entities/Agent";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import image from "@/assets/agent-placeholder.jpg";
 import AgentAvatar from "./AgentAvatar";
 import {

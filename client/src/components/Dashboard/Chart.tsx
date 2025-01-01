@@ -1,4 +1,4 @@
-import { PieChartItem } from "../entities/PieChartItem";
+import { PieChartItem } from "../../entities/PieChartItem";
 import ReactApexChart from "react-apexcharts";
 
 interface Props {

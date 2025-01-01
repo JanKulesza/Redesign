@@ -1,5 +1,5 @@
 import ProgressBar from "./ProgressBar";
-import { PropertyReferralsItem } from "../entities/PropertyReferralsItem";
+import { PropertyReferralsItem } from "../../entities/PropertyReferralsItem";
 
 const PropertyReferrals = () => {
   //Fetching data =>
