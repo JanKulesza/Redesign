@@ -1,7 +1,7 @@
 import { ArrowUp, Ellipsis } from "lucide-react";
 import { Button } from "../ui/button";
 import ReactApexChart from "react-apexcharts";
-import { TotalRevenueOptions, TotalRevenueSeries } from "../config/chart";
+import { TotalRevenueOptions, TotalRevenueSeries } from "../../config/chart";
 
 const TotalRevenue = () => {
   return (
