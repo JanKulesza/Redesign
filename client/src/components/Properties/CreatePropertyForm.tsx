@@ -41,6 +41,8 @@ const CreatePropertyForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(imageUpload);
+
     console.log(values);
     form.reset({
       name: "",

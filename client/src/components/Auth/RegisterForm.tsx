@@ -11,25 +11,25 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Link } from "react-router";
+import { Link, redirect } from "react-router";
 import google from "@/assets/google.svg";
 import axios from "axios";
 
 const formSchema = z
   .object({
-    firstName: z.string().min(3, { message: "First name is too short" }),
-    lastName: z.string().min(3, { message: "Last name is too short" }),
+    firstName: z.string().min(3, { message: "First name is too short." }),
+    lastName: z.string().min(3, { message: "Last name is too short." }),
     email: z
       .string()
-      .nonempty("Email is required")
+      .nonempty("Email is required.")
       .email("This is not a valid email."),
     password: z
       .string()
-      .min(6, { message: "Password must be at least 6 characters" }),
+      .min(6, { message: "Password must be at least 6 characters." }),
     confirmPassword: z.string().min(4),
   })
   .refine(({ confirmPassword, password }) => confirmPassword === password, {
-    message: "Passwords don't match",
+    message: "Passwords don't match.",
     path: ["confirmPassword"],
   });
 
@@ -38,7 +38,32 @@ const RegisterForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const { firstName, lastName, email, password } = values;
+    try {
+      await axios.post("http://localhost:8080/api/v1/auth/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      redirect("/login");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error response:", error.response?.data);
+        form.setError("email", {
+          message:
+            error.response?.data?.message ||
+            "An error occurred during registration.",
+        });
+      } else {
+        console.error("Unexpected error:", error);
+        form.setError("email", {
+          message: "An unexpected error occurred.",
+        });
+      }
+    }
+  };
 
   return (
     <Form {...form}>
@@ -93,7 +118,11 @@ const RegisterForm = () => {
               <FormItem className="w-[50%]">
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter your password" {...field} />
+                  <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +135,11 @@ const RegisterForm = () => {
               <FormItem className="w-[50%]">
                 <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
-                  <Input placeholder="Confirm password" {...field} />
+                  <Input
+                    type="password"
+                    placeholder="Confirm password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -118,7 +151,7 @@ const RegisterForm = () => {
         </Button>
         <Button
           variant="ghost"
-          className="border-solid border-1 border-black"
+          className="border-thin border border-zinc-300"
           asChild
         >
           <Link to="/google">
