@@ -11,7 +11,7 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Link, redirect } from "react-router";
+import { Link, useNavigate } from "react-router";
 import google from "@/assets/google.svg";
 import axios from "axios";
 
@@ -34,6 +34,8 @@ const formSchema = z
   });
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -47,7 +49,7 @@ const RegisterForm = () => {
         email,
         password,
       });
-      redirect("/login");
+      navigate("/login");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error response:", error.response?.data);

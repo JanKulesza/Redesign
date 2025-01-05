@@ -13,6 +13,7 @@ import SearchInput from "./SearchInput";
 import { ModeToggle } from "./ModeToggle";
 import avatar from "@/assets/avatar.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Link } from "react-router";
 
 const NavBar = () => {
   const { isMobile, setOpenMobile } = useSidebar();
@@ -51,10 +52,11 @@ const NavBar = () => {
           <DropdownMenuContent className="mt-4">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Button variant="destructive" asChild className="w-full">
+                <Link to="/logout">Logout</Link>
+              </Button>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

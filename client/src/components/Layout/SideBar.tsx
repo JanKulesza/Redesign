@@ -31,12 +31,12 @@ interface NavBarItem {
 
 const SideBar = () => {
   const items: NavBarItem[] = [
-    { title: "Dashboard", url: "/", icon: LayoutGrid },
-    { title: "Property", url: "/properties", icon: Building2 },
-    { title: "Agent", url: "/agents", icon: Users },
-    { title: "Review", url: "/review", icon: Star },
-    { title: "Message", url: "/message", icon: MessageCircleMore },
-    { title: "My profile", url: "/profile", icon: CircleUser },
+    { title: "Dashboard", url: "/app", icon: LayoutGrid },
+    { title: "Property", url: "/app/properties", icon: Building2 },
+    { title: "Agent", url: "/app/agents", icon: Users },
+    { title: "Review", url: "/app/review", icon: Star },
+    { title: "Message", url: "/app/message", icon: MessageCircleMore },
+    { title: "My profile", url: "/app/profile", icon: CircleUser },
   ];
   const { isMobile, setOpenMobile } = useSidebar();
   return (

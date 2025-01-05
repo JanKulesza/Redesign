@@ -13,7 +13,8 @@ import axios, { isAxiosError } from "axios";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import google from "@/assets/google.svg";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useAuth } from "@/context/AuthProvider";
 
 const formSchema = z.object({
   email: z
@@ -24,18 +25,29 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
+  const { setToken } = useAuth();
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { email, password } = values;
     try {
-      const data = await axios.post("http://localhost:8080/api/v1/auth/login", {
-        email,
-        password,
-      });
-      console.log(data);
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/auth/login",
+        {
+          email,
+          password,
+        }
+      );
+
+      setToken(data.token);
+      navigate("/app/");
     } catch (error) {
       console.log(axios);
       if (isAxiosError(error)) {
