@@ -35,7 +35,7 @@ const LatestSales = () => {
   return (
     <div className="relative bg-background rounded-2xl p-8">
       <Button variant="outline" asChild className="absolute top-7 right-8 ">
-        <Link to="/properties">View All</Link>
+        <Link to="/app/properties">View All</Link>
       </Button>
       <h3 className="font-semibold text-lg mb-8">Latest Sales</h3>
       <div className="flex flex-col gap-6">

@@ -14,6 +14,7 @@ const Chart = ({ item }: Props) => {
       </div>
       <ReactApexChart
         options={{
+          tooltip: { enabled: false },
           chart: { type: "donut" },
           colors: [item.color, "hsl(var(--secondary))"],
           legend: { show: false },
