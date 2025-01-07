@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 interface Props {
   children: ReactNode;
@@ -24,12 +24,30 @@ const AuthProvider = ({ children }: Props) => {
     localStorage.getItem("token")
   );
 
-  const setToken = (newToken: string | null) => setToken_(newToken);
+  const setToken = (newToken: string | null) => {
+    setToken_(newToken);
+  };
 
   useEffect(() => {
     if (token) {
-      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-      localStorage.setItem("token", token);
+      axios
+        .post("http://localhost:8080/api/v1/auth", { token })
+        .then(({ data }) => {
+          console.log(data);
+
+          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+          localStorage.setItem("token", token);
+        })
+        .catch((err) => {
+          if (err instanceof AxiosError) {
+            console.log(err);
+            if (err.status === 403) {
+              delete axios.defaults.headers.common.Authorization;
+              localStorage.removeItem("token");
+              setToken(null);
+            }
+          }
+        });
     } else {
       delete axios.defaults.headers.common.Authorization;
       localStorage.removeItem("token");

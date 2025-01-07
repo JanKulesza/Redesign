@@ -1,6 +1,31 @@
 import User from "../mongodb/models/user.js";
 import jwt from "jsonwebtoken";
 
+const verifyUser = async (req, res) => {
+  const { token } = req.body;
+
+  if (token) {
+    try {
+      const decode = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decode);
+      res.json({
+        userId: decode.userId,
+        tokenValid: true,
+        message: "Token valid",
+      });
+    } catch (error) {
+      return res
+        .status(403)
+        .json({ tokenValid: false, message: "Token invalid" });
+    }
+  } else {
+    res.json({
+      tokenValid: false,
+      message: "No token provided.",
+    });
+  }
+};
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -15,7 +40,7 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ type: "password", message: "Invalid password" });
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "15m",
     });
 
     res.json({ token });
@@ -43,4 +68,4 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser };
+export { verifyUser, registerUser, loginUser };

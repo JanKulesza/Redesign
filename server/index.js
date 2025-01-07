@@ -5,6 +5,7 @@ import connectDB from "./mongodb/connect.js";
 import userRouter from "./routes/user.routes.js";
 import propertyRouter from "./routes/property.routes.js";
 import authRouter from "./routes/auth.routes.js";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", authRouter);
+
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/properties", propertyRouter);
 
