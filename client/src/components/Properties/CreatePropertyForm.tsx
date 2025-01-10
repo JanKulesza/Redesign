@@ -21,11 +21,14 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import { createProperty } from "@/hooks/useProperty";
+import { useAuthUserId } from "@/hooks/useUsers";
+import { useAuth } from "@/context/AuthProvider";
 
 const formSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters." }),
   description: z.string().nonempty("Enter Description."),
-  type: z.string({ message: "Choose type" }),
+  propertyType: z.string({ message: "Choose type" }),
   price: z.coerce.number().gte(1, { message: "Enter valid price." }),
   location: z.string().nonempty("Enter valid location."),
   photo: z.instanceof(File).refine((file) => file.size <= 10 * 1024 * 1024, {
@@ -34,23 +37,26 @@ const formSchema = z.object({
 });
 
 const CreatePropertyForm = () => {
-  const [imageUpload, setImageUpload] = useState<string | null>(null);
+  const [, setImageUpload] = useState<string | null>(null);
+  const { token } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(imageUpload);
+    console.log(values.photo);
 
-    console.log(values);
+    if (token) createProperty({ ...values, creator: useAuthUserId(token) });
+
     form.reset({
       name: "",
       description: "",
-      type: "",
-      price: parseInt(""),
+      propertyType: "",
+      price: 0,
       location: "",
     });
+    setImageUpload(null);
   };
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -94,7 +100,7 @@ const CreatePropertyForm = () => {
         <div className="grid grid-cols-3 gap-3">
           <FormField
             control={form.control}
-            name="type"
+            name="propertyType"
             render={({ field }) => (
               <FormItem className="grid-cols-subgrid col-span-2">
                 <FormLabel>Type</FormLabel>

@@ -1,36 +1,10 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
-import { Property } from "@/entities/Property";
-import image from "@/assets/property.jpg";
 import PropertyAvatar from "./PropertyAvatar";
+import { Property } from "@/entities/Property";
 
 const LatestSales = () => {
-  const properties: Property[] = [
-    {
-      name: "Benny Chagur",
-      image: image,
-      location: "North Carolina",
-      price: 124,
-    },
-    {
-      name: "Chynita Heree",
-      image: image,
-      location: "North Carolina",
-      price: 124,
-    },
-    {
-      name: "David Yers",
-      image: image,
-      location: "North Carolina",
-      price: 124,
-    },
-    {
-      name: "Hayder Jahid",
-      image: image,
-      location: "North Carolina",
-      price: 124,
-    },
-  ];
+  const properties: Property[] = [];
 
   return (
     <div className="relative bg-background rounded-2xl p-8">
@@ -39,7 +13,7 @@ const LatestSales = () => {
       </Button>
       <h3 className="font-semibold text-lg mb-8">Latest Sales</h3>
       <div className="flex flex-col gap-6">
-        {properties.map((property) => (
+        {properties?.map((property) => (
           <div
             key={property.name}
             className="flex justify-between items-center"

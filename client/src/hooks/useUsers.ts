@@ -1,6 +1,7 @@
 import { User } from "@/entities/User";
 import APIClient from "@/services/api-client";
 import { AxiosError } from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 
 const { getAll, get } = new APIClient<User>("/users");
@@ -44,4 +45,10 @@ export const useUser = async (userId: string) => {
         };
       return { user: null, error: "An unknown error occurred." };
     });
+};
+
+export const useAuthUserId = (token: string) => {
+  const { userId } = jwtDecode<{ userId: number }>(token);
+
+  return userId.toString();
 };

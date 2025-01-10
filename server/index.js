@@ -6,6 +6,7 @@ import userRouter from "./routes/user.routes.js";
 import propertyRouter from "./routes/property.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import jwt from "jsonwebtoken";
+import multer from "multer";
 
 dotenv.config();
 
