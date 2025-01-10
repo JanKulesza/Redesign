@@ -9,8 +9,9 @@ class APIClient<T> {
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
-  getAll = () => apiClient.get<T[]>(this.endpoint);
-  get = (id: string) => apiClient.get<T>(`${this.endpoint}/${id}`);
+  getAll = () => apiClient.get<T[]>(this.endpoint).then((res) => res.data);
+  get = (id: string) =>
+    apiClient.get<T>(`${this.endpoint}/${id}`).then((res) => res.data);
 }
 
 export default APIClient;
