@@ -7,7 +7,7 @@ import TotalRevenue from "@/components/Dashboard/TotalRevenue";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="md:p-10">
       <h1 className="text-foreground text-4xl font-semibold my-8 ml-4 md:mt-0 md:ml-0 ">
         Dashboard
       </h1>

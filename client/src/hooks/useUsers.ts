@@ -31,20 +31,20 @@ export const useUsers = () => {
   return data;
 };
 
-export const useUser = async (userId: string) => {
-  get(userId)
-    .then((data) => {
-      return { user: data, error: null };
-    })
-    .catch((error) => {
-      console.error(error);
-      if (error instanceof AxiosError)
-        return {
-          user: null,
-          error: error.response?.data?.message || error.message,
-        };
-      return { user: null, error: "An unknown error occurred." };
-    });
+export const useUser = (userId: string) => {
+  const [user, setUser] = useState<User>({} as User);
+
+  useEffect(() => {
+    get(userId)
+      .then((data) => {
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  return user;
 };
 
 export const useAuthUserId = (token: string) => {

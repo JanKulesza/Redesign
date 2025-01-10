@@ -1,6 +1,14 @@
 import Property from "../mongodb/models/property.js";
 
-const getAllProperties = async (req, res) => {};
+const getAllProperties = async (req, res) => {
+  try {
+    const properties = await Property.find();
+    return res.status(200).json(properties);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 const getPropertyDetail = async (req, res) => {};
 const createProperty = async (req, res) => {
   const property = req.body;
@@ -8,7 +16,6 @@ const createProperty = async (req, res) => {
 
   try {
     const newProperty = new Property({ ...property, photo: filename });
-    console.log(newProperty);
     await newProperty.save();
     res.status(200).json({ message: "Property created" });
   } catch (error) {

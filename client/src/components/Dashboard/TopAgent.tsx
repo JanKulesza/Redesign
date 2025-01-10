@@ -24,7 +24,7 @@ const TopAgent = () => {
       <h3 className="font-semibold text-lg mb-8">Top Agent</h3>
       <div className="flex flex-col gap-5">
         {users.slice(0, 5).map((user) => (
-          <div key={user.userId} className="flex justify-between">
+          <div key={user._id} className="flex justify-between">
             <AgentAvatar user={user} />
             <DropdownMenu>
               <DropdownMenuTrigger>
