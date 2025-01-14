@@ -17,7 +17,7 @@ class APIClient<T> {
       throw new Error(`Create  method is not supported for ${this.endpoint}`);
     }
     return apiClient
-      .post<T>(this.endpoint, entity, config)
+      .post<{ message: string; entity: T }>(this.endpoint, entity, config)
       .then((res) => res.data);
   };
 }

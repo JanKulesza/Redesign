@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 const { create, getAll } = new APIClient<Property>("/properties");
 
 export const createProperty = (property: Property) => {
-  console.log(property);
-
-  return create(property, {
+  const data = create(property, {
     headers: { "Content-Type": "multipart/form-data" },
   }).catch((error) => console.error(error));
+
+  return data;
 };
 
 export const useProperties = () => {

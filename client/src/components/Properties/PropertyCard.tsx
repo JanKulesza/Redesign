@@ -14,7 +14,11 @@ const PropertyCard = ({ property }: Props) => {
       <div className="w-1/2 h-fit">
         <img
           className="rounded w-full h-full object-cover"
-          src={`http://localhost:8080/api/v1/public/${property.photo}`}
+          src={
+            property.photo instanceof File
+              ? URL.createObjectURL(property.photo)
+              : `http://localhost:8080/api/v1/public/${property.photo}`
+          }
           alt=""
         />
       </div>

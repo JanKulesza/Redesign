@@ -24,6 +24,7 @@ import { useState } from "react";
 import { createProperty } from "@/hooks/useProperty";
 import { useAuthUserId } from "@/hooks/useUsers";
 import { useAuth } from "@/context/AuthProvider";
+import { Property } from "@/entities/Property";
 
 const formSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters." }),
@@ -36,26 +37,59 @@ const formSchema = z.object({
   }),
 });
 
-const CreatePropertyForm = () => {
+interface Props {
+  handleClose: () => void;
+  onAddProperty: (properties: Property[]) => void;
+  properties: Property[];
+}
+
+const CreatePropertyForm = ({
+  handleClose,
+  onAddProperty,
+  properties,
+}: Props) => {
   const [, setImageUpload] = useState<string | null>(null);
   const { token } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-  });
-
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values.photo);
-
-    if (token) createProperty({ ...values, creator: useAuthUserId(token) });
-
-    form.reset({
+    defaultValues: {
       name: "",
       description: "",
       propertyType: "",
       price: 0,
       location: "",
-    });
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const initialProperties = properties;
+
+    if (token) {
+      try {
+        const creator = useAuthUserId(token);
+
+        if (!creator) throw new Error("Failed to fetch creator");
+        onAddProperty([
+          ...initialProperties,
+          { ...values, photo: values.photo, creator: creator },
+        ]);
+        handleClose();
+
+        const data = await createProperty({
+          ...values,
+          creator,
+        });
+
+        if (!data) throw new Error("Failed to create property");
+        onAddProperty([...initialProperties, { ...data.entity, name: "New" }]);
+      } catch (error) {
+        console.log("Error: " + error);
+        onAddProperty(initialProperties);
+      }
+    }
+
+    form.reset();
     setImageUpload(null);
   };
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

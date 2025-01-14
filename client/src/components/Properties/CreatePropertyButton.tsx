@@ -12,10 +12,20 @@ import {
 import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import CreatePropertyForm from "./CreatePropertyForm";
+import { Property } from "@/entities/Property";
+import { useState } from "react";
 
-const CreatePropertyButton = () => {
+interface Props {
+  onAddProperty: (properties: Property[]) => void;
+  properties: Property[];
+}
+
+const CreatePropertyButton = ({ onAddProperty, properties }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="default">
           <Plus /> Add Property
@@ -28,7 +38,11 @@ const CreatePropertyButton = () => {
             Fill out the form below to create property
           </DialogDescription>
         </DialogHeader>
-        <CreatePropertyForm />
+        <CreatePropertyForm
+          handleClose={handleClose}
+          properties={properties}
+          onAddProperty={onAddProperty}
+        />
         <DialogFooter className="w-full">
           <DialogClose className="w-full" asChild>
             <Button type="button" variant="secondary">

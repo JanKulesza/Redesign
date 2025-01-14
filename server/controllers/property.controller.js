@@ -17,7 +17,7 @@ const createProperty = async (req, res) => {
   try {
     const newProperty = new Property({ ...property, photo: filename });
     await newProperty.save();
-    res.status(200).json({ message: "Property created" });
+    res.status(200).json({ message: "Property created", entity: newProperty });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
