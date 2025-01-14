@@ -11,14 +11,14 @@ const PropertyCard = ({ property }: Props) => {
 
   return (
     <div className="flex gap-3 py-2">
-      <div className="w-1/2">
+      <div className="w-1/2 h-fit">
         <img
-          className="rounded object-scale-down"
+          className="rounded w-full h-full object-cover"
           src={`http://localhost:8080/api/v1/public/${property.photo}`}
           alt=""
         />
       </div>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between w-1/2">
         <div className="text-theme bg-theme/20 p-2 w-fit max-sm:text-xs rounded-xl font-semibold">
           ${property.price}
         </div>
