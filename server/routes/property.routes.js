@@ -13,12 +13,9 @@ const propertyRouter = Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log("Multer is saving the file...");
-
     cb(null, "public/");
   },
   filename: (req, file, cb) => {
-    console.log("Multer is assigning the filename...");
     cb(null, Date.now() + "_" + file.originalname);
   },
 });

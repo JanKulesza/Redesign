@@ -1,18 +1,13 @@
 import { Property } from "@/entities/Property";
-import { useUser } from "@/hooks/useUsers";
-import { House, MapPin, UserRoundPen } from "lucide-react";
-import { Navigate } from "react-router";
+import { BedDouble, House, MapPin } from "lucide-react";
 
 interface Props {
   property: Property;
 }
 
 const PropertyCard = ({ property }: Props) => {
-  const { user, isLoading } = useUser(property.creator);
-  if (isLoading) return <div>Loading...</div>;
-  if (!user) return <Navigate to={"/error"} />;
   return (
-    <div className="flex gap-3 py-2">
+    <div className="flex gap-3 py-2 overflow-hidden">
       <div className="w-1/2 h-fit">
         <img
           className="rounded-xl w-full h-full object-cover"
@@ -40,7 +35,7 @@ const PropertyCard = ({ property }: Props) => {
             {property.propertyType}
           </p>
           <p className="flex gap-2 items-center">
-            <UserRoundPen size={20} /> {user.firstName + " " + user.lastName}
+            <BedDouble size={20} /> {property.beds} Beds
           </p>
         </div>
       </div>

@@ -1,7 +1,23 @@
 import AgentInfo from "@/components/PropertyDetails/AgentInfo";
 import { Button } from "@/components/ui/button";
 import { useProperty } from "@/hooks/useProperty";
-import { ChevronLeft, MapPin, Star, StarHalf } from "lucide-react";
+import {
+  Bath,
+  BedDouble,
+  ChevronLeft,
+  Cigarette,
+  CigaretteOff,
+  DoorClosed,
+  MapPin,
+  ParkingCircle,
+  ParkingCircleOff,
+  Scan,
+  Star,
+  StarHalf,
+  Utensils,
+  Wifi,
+  WifiOff,
+} from "lucide-react";
 import { ReactNode } from "react";
 import { Link, Navigate, useParams } from "react-router";
 
@@ -43,7 +59,7 @@ const PropertyDetails = () => {
         {/* Left panel */}
         <div className="flex flex-col xl:col-span-2 gap-8 mb-8">
           <img
-            className="w-full h-[350px] xl:h-[500px] xl:col-span-4 rounded-xl object-cover "
+            className="w-full h-[250px] md:h-[350px] xl:h-[500px] xl:col-span-4 rounded-xl object-cover "
             src={`http://localhost:8080/api/v1/public/${property?.photo}`}
           />
           {/* Property Info */}
@@ -74,6 +90,66 @@ const PropertyDetails = () => {
                 <p className="text-xl font-semibold max-sm:hidden">Price</p>
                 <p className="text-theme font-semibold text-3xl">
                   ${property.price}
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="text-xl font-semibold mb-6">Facility </p>
+              <div className="flex flex-wrap gap-6 sm:gap-10 mb-8">
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    <BedDouble />
+                  </span>
+                  {property.beds} Beds
+                </p>
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    <Utensils />
+                  </span>
+                  {property.privateKitchen ? "Kitchen" : "No Kitchen"}
+                </p>
+
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    <Bath />
+                  </span>
+                  {property.privateBath ? "Bath" : "No Bath"}
+                </p>
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    <DoorClosed />
+                  </span>
+                  {property.balcony ? "Balcony" : "No Balcony"}
+                </p>
+
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    {property.smoking ? <Cigarette /> : <CigaretteOff />}
+                  </span>
+                  {property.smoking ? "Smoking Area" : "No Smoking Area"}
+                </p>
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    <Scan />
+                  </span>
+                  {property.area}m2 Area
+                </p>
+
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    {property.wifi ? <Wifi /> : <WifiOff />}
+                  </span>
+                  {property.wifi ? "Wifi" : "No Wifi"}
+                </p>
+                <p className="flex font-medium text-lg items-center gap-2">
+                  <span className="text-secondary-foreground">
+                    {property.parking ? (
+                      <ParkingCircle />
+                    ) : (
+                      <ParkingCircleOff />
+                    )}
+                  </span>
+                  {property.parking ? "Parking" : "No Parking"}
                 </p>
               </div>
             </div>

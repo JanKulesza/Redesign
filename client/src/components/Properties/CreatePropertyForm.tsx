@@ -25,12 +25,22 @@ import { createProperty } from "@/hooks/useProperty";
 import { useAuthUserId } from "@/hooks/useUsers";
 import { useAuth } from "@/context/AuthProvider";
 import { Property } from "@/entities/Property";
+import { Checkbox } from "../ui/checkbox";
+import { CheckedState } from "@radix-ui/react-checkbox";
 
 const formSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters." }),
   description: z.string().nonempty("Enter Description."),
   propertyType: z.string({ message: "Choose type" }),
   price: z.coerce.number().gte(1, { message: "Enter valid price." }),
+  beds: z.coerce.number().gte(1, { message: "Enter valid number" }),
+  area: z.coerce.number().gte(1, { message: "Enter valid number" }),
+  privateKitchen: z.boolean(),
+  privateBath: z.boolean(),
+  balcony: z.boolean(),
+  wifi: z.boolean(),
+  smoking: z.boolean(),
+  parking: z.boolean(),
   location: z.string().nonempty("Enter valid location."),
   photo: z.instanceof(File).refine((file) => file.size <= 10 * 1024 * 1024, {
     message: "Image size must be less than 10MB",
@@ -58,6 +68,14 @@ const CreatePropertyForm = ({
       description: "",
       propertyType: "",
       price: 0,
+      beds: 0,
+      area: 0,
+      privateBath: false,
+      privateKitchen: false,
+      balcony: false,
+      wifi: false,
+      smoking: false,
+      parking: false,
       location: "",
     },
   });
@@ -82,7 +100,9 @@ const CreatePropertyForm = ({
         });
 
         if (!data) throw new Error("Failed to create property");
-        onAddProperty([...initialProperties, { ...data.entity, name: "New" }]);
+        console.log(data);
+
+        onAddProperty([...initialProperties, { ...data.entity }]);
       } catch (error) {
         console.log("Error: " + error);
         onAddProperty(initialProperties);
@@ -98,6 +118,19 @@ const CreatePropertyForm = ({
       setImageUpload(URL.createObjectURL(file));
       form.setValue("photo", file);
     }
+  };
+
+  const handleCheckBoxChange = (
+    checked: CheckedState,
+    name:
+      | "privateKitchen"
+      | "privateBath"
+      | "balcony"
+      | "wifi"
+      | "smoking"
+      | "parking"
+  ) => {
+    if (typeof checked === "boolean") form.setValue(name, checked);
   };
   return (
     <Form {...form}>
@@ -131,34 +164,35 @@ const CreatePropertyForm = ({
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="propertyType"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Type</FormLabel>
+              <FormControl>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select type" {...field} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Apartment">Apartment</SelectItem>
+                    <SelectItem value="Villa">Villa</SelectItem>
+                    <SelectItem value="Farmhouse">Farmhouse</SelectItem>
+                    <SelectItem value="Condos">Condos</SelectItem>
+                    <SelectItem value="Townhouse">Townhouse</SelectItem>
+                    <SelectItem value="Duplex">Duplex</SelectItem>
+                    <SelectItem value="Studio">Studio</SelectItem>
+                    <SelectItem value="Chalet">Chalet</SelectItem>
+                  </SelectContent>
+                </Select>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className="grid grid-cols-3 gap-3">
-          <FormField
-            control={form.control}
-            name="propertyType"
-            render={({ field }) => (
-              <FormItem className="grid-cols-subgrid col-span-2">
-                <FormLabel>Type</FormLabel>
-                <FormControl>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select type" {...field} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Apartment">Apartment</SelectItem>
-                      <SelectItem value="Villa">Villa</SelectItem>
-                      <SelectItem value="Farmhouse">Farmhouse</SelectItem>
-                      <SelectItem value="Condos">Condos</SelectItem>
-                      <SelectItem value="Townhouse">Townhouse</SelectItem>
-                      <SelectItem value="Duplex">Duplex</SelectItem>
-                      <SelectItem value="Studio">Studio</SelectItem>
-                      <SelectItem value="Chalet">Chalet</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="price"
@@ -166,9 +200,135 @@ const CreatePropertyForm = ({
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="Enter price" {...field} />
+                  <Input type="number" {...field} />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="beds"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Beds</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="area"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Area</FormLabel>
+                <FormControl>
+                  <Input type="number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="grid grid-cols-3">
+          <FormField
+            control={form.control}
+            name="privateBath"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "privateBath")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Bath</FormLabel>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="privateKitchen"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "privateKitchen")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Kitchen</FormLabel>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="balcony"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "balcony")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Balcony</FormLabel>
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="grid grid-cols-3">
+          <FormField
+            control={form.control}
+            name="wifi"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "wifi")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Wifi</FormLabel>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="smoking"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "smoking")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Smoking</FormLabel>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="parking"
+            render={() => (
+              <FormItem>
+                <FormControl>
+                  <Checkbox
+                    onCheckedChange={(checked) =>
+                      handleCheckBoxChange(checked, "parking")
+                    }
+                  />
+                </FormControl>
+                <FormLabel className="text-sm ml-1">Parking</FormLabel>
               </FormItem>
             )}
           />
