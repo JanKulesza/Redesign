@@ -1,19 +1,21 @@
 import { Property } from "@/entities/Property";
 import { useUser } from "@/hooks/useUsers";
 import { House, MapPin, UserRoundPen } from "lucide-react";
+import { Navigate } from "react-router";
 
 interface Props {
   property: Property;
 }
 
 const PropertyCard = ({ property }: Props) => {
-  const { firstName, lastName } = useUser(property.creator);
-
+  const { user, isLoading } = useUser(property.creator);
+  if (isLoading) return <div>Loading...</div>;
+  if (!user) return <Navigate to={"/error"} />;
   return (
     <div className="flex gap-3 py-2">
       <div className="w-1/2 h-fit">
         <img
-          className="rounded w-full h-full object-cover"
+          className="rounded-xl w-full h-full object-cover"
           src={
             property.photo instanceof File
               ? URL.createObjectURL(property.photo)
@@ -35,11 +37,10 @@ const PropertyCard = ({ property }: Props) => {
         <div className="flex gap-2 md:gap-6 max-sm:text-xs">
           <p className="flex gap-2 items-center">
             <House size={20} />
-            {property.propertyType.charAt(0).toUpperCase() +
-              property.propertyType.slice(1)}
+            {property.propertyType}
           </p>
           <p className="flex gap-2 items-center">
-            <UserRoundPen size={20} /> {firstName + " " + lastName}
+            <UserRoundPen size={20} /> {user.firstName + " " + user.lastName}
           </p>
         </div>
       </div>

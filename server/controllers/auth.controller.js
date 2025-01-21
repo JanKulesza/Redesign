@@ -7,7 +7,6 @@ const verifyUser = async (req, res) => {
   if (token) {
     try {
       const decode = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(decode);
       res.json({
         userId: decode.userId,
         tokenValid: true,
@@ -57,7 +56,6 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
 
     const newUser = new User({ firstName, lastName, email, password, avatar });
-    console.log(newUser);
 
     await newUser.save();
     res.status(201).json({ message: "User registered" });

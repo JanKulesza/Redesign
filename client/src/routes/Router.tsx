@@ -8,6 +8,7 @@ import Login from "@/components/Auth/Login";
 import { useAuth } from "@/context/AuthProvider";
 import ProtectedRoute from "./ProtectedRoute";
 import Logout from "@/components/Auth/Logout";
+import PropertyDetails from "@/pages/PropertyDetails";
 
 const Router = () => {
   const { token } = useAuth();
@@ -28,6 +29,7 @@ const Router = () => {
           <Route path="app" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="properties" element={<Properties />} />
+            <Route path="properties/:id" element={<PropertyDetails />} />
           </Route>
         </Route>
         <Route path="*" element={<Error />} />

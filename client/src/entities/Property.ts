@@ -7,4 +7,5 @@ export interface Property {
   price: number;
   photo: File | string;
   creator: string;
+  rating?: number;
 }

@@ -9,7 +9,20 @@ const getAllProperties = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-const getPropertyDetail = async (req, res) => {};
+const getPropertyDetail = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const property = await Property.findById(id);
+
+    if (!property)
+      return res.status(400).json({ message: "Property doesn't exist" });
+    return res.status(200).json(property);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 const createProperty = async (req, res) => {
   const property = req.body;
   const { filename } = req.file;

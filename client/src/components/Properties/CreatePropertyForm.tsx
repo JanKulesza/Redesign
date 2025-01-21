@@ -144,14 +144,14 @@ const CreatePropertyForm = ({
                       <SelectValue placeholder="Select type" {...field} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="apartment">Apartment</SelectItem>
-                      <SelectItem value="villa">Villa</SelectItem>
-                      <SelectItem value="farmhouse">Farmhouse</SelectItem>
-                      <SelectItem value="condos">Condos</SelectItem>
-                      <SelectItem value="townhouse">Townhouse</SelectItem>
-                      <SelectItem value="duplex">Duplex</SelectItem>
-                      <SelectItem value="studio">Studio</SelectItem>
-                      <SelectItem value="chalet">Chalet</SelectItem>
+                      <SelectItem value="Apartment">Apartment</SelectItem>
+                      <SelectItem value="Villa">Villa</SelectItem>
+                      <SelectItem value="Farmhouse">Farmhouse</SelectItem>
+                      <SelectItem value="Condos">Condos</SelectItem>
+                      <SelectItem value="Townhouse">Townhouse</SelectItem>
+                      <SelectItem value="Duplex">Duplex</SelectItem>
+                      <SelectItem value="Studio">Studio</SelectItem>
+                      <SelectItem value="Chalet">Chalet</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>

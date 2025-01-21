@@ -12,15 +12,17 @@ import { useSidebar } from "../ui/sidebar";
 import SearchInput from "./SearchInput";
 import { ModeToggle } from "./ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useAuth } from "@/context/AuthProvider";
 import { useAuthUserId, useUser } from "@/hooks/useUsers";
-import { User } from "@/entities/User";
 
 const NavBar = () => {
   const { isMobile, setOpenMobile } = useSidebar();
   const { token } = useAuth();
-  const user = token ? useUser(useAuthUserId(token)) : ({} as User);
+  if (!token) return <Navigate to={"/login"} />;
+  const { user, isLoading } = useUser(useAuthUserId(token));
+  if (isLoading) return <div>Loading...</div>;
+  if (!user) return <Navigate to={"/error"} />;
 
   return (
     <nav className="md:px-10 max-h-20 flex-1 flex p-4 justify-between bg-background">

@@ -31,20 +31,23 @@ export const useUsers = () => {
   return data;
 };
 
-export const useUser = (userId: string) => {
-  const [user, setUser] = useState<User>({} as User);
-
+export const useUser = (userId: string | null) => {
+  const [user, setUser] = useState<User>();
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    get(userId)
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+    if (userId)
+      get(userId)
+        .then((data) => {
+          setUser(data);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsLoading(false);
+        });
+  }, [userId]);
 
-  return user;
+  return { user, isLoading };
 };
 
 export const useAuthUserId = (token: string) => {
