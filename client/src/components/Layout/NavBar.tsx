@@ -9,16 +9,15 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { useSidebar } from "../ui/sidebar";
-import SearchInput from "./SearchInput";
 import { ModeToggle } from "./ModeToggle";
 import { Link } from "react-router";
 import UserAvatar from "./UserAvatar";
 
 const NavBar = () => {
-  const { isMobile, setOpenMobile } = useSidebar();
+  const { setOpenMobile } = useSidebar();
 
   return (
-    <nav className="md:px-10 max-h-20 flex-1 flex p-4 justify-between bg-background">
+    <nav className="md:px-10 max-h-20 flex-1 flex p-4 justify-end bg-background">
       <Button
         className="h-[48px] text-foreground md:hidden"
         variant="ghost"
@@ -26,7 +25,6 @@ const NavBar = () => {
       >
         <Menu />
       </Button>
-      {!isMobile && <SearchInput />}
       <div className="flex gap-5">
         <Button variant="ghost" size="icon" className="h-[48px] w-[48px]">
           <Bell className=" text-foreground h-[100%]" />

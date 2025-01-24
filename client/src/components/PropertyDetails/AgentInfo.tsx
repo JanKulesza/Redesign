@@ -9,6 +9,7 @@ import {
 } from "../ui/card";
 import { useUser } from "@/hooks/useUsers";
 import { Navigate } from "react-router";
+import { Skeleton } from "../ui/skeleton";
 
 interface Props {
   creatorId: string;
@@ -16,11 +17,25 @@ interface Props {
 
 const AgentInfo = ({ creatorId }: Props) => {
   const { user: agent, isLoading } = useUser(creatorId);
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <Card className="bg-background xl:h-[500px] lg:col-span-2 py-2 flex w-full flex-col gap-5 justify-center">
+        <CardHeader className="mx-auto">
+          <Skeleton className="h-28 w-28 rounded-full" />
+        </CardHeader>
+        <CardTitle className="text-xl mb-5">
+          <Skeleton className="h-4 w-1/2 mx-auto" />
+        </CardTitle>
+        <CardDescription className="mb-10">
+          <Skeleton className="h-4 w-2/3 mb-2 mx-auto" />
+          <Skeleton className="h-4 w-1/2 mx-auto" />
+        </CardDescription>
+      </Card>
+    );
   if (!agent) return <Navigate to="/error" />;
 
   return (
-    <Card className="bg-background xl:h-[500px] lg:col-span-2 py-2 flex w-full flex-col gap-5 justify-end">
+    <Card className="bg-background xl:h-[500px] lg:col-span-2 py-2 flex w-full flex-col gap-5 justify-center">
       <CardHeader className=" mx-auto ">
         <img
           src={

@@ -28,9 +28,13 @@ const renderRating = (ratingValue: number | undefined) => {
 
   while (remainingRating >= 0) {
     if (remainingRating >= 10)
-      rating.push(<Star strokeWidth={0} size={32} fill="gold" />);
+      rating.push(
+        <Star key={remainingRating} strokeWidth={0} size={32} fill="gold" />
+      );
     else if (remainingRating >= 5)
-      rating.push(<StarHalf strokeWidth={0} size={32} fill="gold" />);
+      rating.push(
+        <StarHalf key={remainingRating} strokeWidth={0} size={32} fill="gold" />
+      );
 
     remainingRating -= 10;
   }
@@ -76,8 +80,9 @@ const PropertyDetails = () => {
               </div>
               <div className="max-sm:flex max-sm:justify-between">
                 <div className="flex relative mb-2">
-                  {Array.from({ length: 5 }, () => (
+                  {Array.from({ length: 5 }, (_, k) => (
                     <Star
+                      key={k}
                       fill="hsl(var(--secondary))"
                       size={32}
                       strokeWidth={0}

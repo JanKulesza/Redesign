@@ -16,11 +16,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   useSidebar,
-  SidebarFooter,
 } from "../ui/sidebar";
 import { Link, useLocation } from "react-router";
 import { Button } from "../ui/button";
-import SearchInput from "./SearchInput";
 import logo from "@/assets/logo.svg";
 
 interface NavBarItem {
@@ -36,8 +34,7 @@ const SideBar = () => {
     { title: "Dashboard", url: "/app", icon: LayoutGrid },
     { title: "Property", url: "/app/properties", icon: Building2 },
     { title: "Agent", url: "/app/agents", icon: Users },
-    { title: "Review", url: "/app/review", icon: Star },
-    { title: "Message", url: "/app/message", icon: MessageCircleMore },
+    // { title: "Review", url: "/app/review", icon: Star },
     { title: "My profile", url: "/app/profile", icon: CircleUser },
   ];
   const { isMobile, setOpenMobile } = useSidebar();
@@ -77,11 +74,6 @@ const SideBar = () => {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      {isMobile && (
-        <SidebarFooter className="py-8 md:py-0 px-3 w-full border-top-0 bg-background">
-          <SearchInput />
-        </SidebarFooter>
-      )}
     </Sidebar>
   );
 };
