@@ -9,13 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Hospital } from "lucide-react";
 
 const Properties = () => {
-  const { properties, isLoading, error } = useProperties();
-  const [optimisticProperties, setProperties] =
-    useState<Property[]>(properties);
+  const { properties: fetchedProperties, isLoading, error } = useProperties();
+  const [properties, setProperties] = useState<Property[]>(fetchedProperties);
 
   useEffect(() => {
-    setProperties(properties);
-  }, [properties]);
+    setProperties(fetchedProperties);
+  }, [fetchedProperties]);
 
   const skeletons = [1, 2, 3, 4];
 
@@ -53,23 +52,32 @@ const Properties = () => {
     );
 
   return (
-    <div className="bg-background rounded-xl mt-10 md:m-2 lg:m-10 p-2 pt-8 lg:p-8 ">
+    <div className="bg-background min-h-[450px] md:min-h-[700px] rounded-xl mt-10 md:m-2 lg:m-10 p-2 pt-8 lg:p-8 ">
       <div className="mb-5 flex">
         <CreatePropertyButton
-          properties={optimisticProperties}
+          properties={properties}
           onAddProperty={(properties: Property[]) => setProperties(properties)}
         />
       </div>
-      <div className="grid gap-8 xl:gap-3 xl:grid-cols-2">
-        {properties.map((property) => (
-          <Link
-            to={`/app/properties/${property._id}`}
-            key={property?._id || property.name}
-          >
-            <PropertyCard property={property} />
-          </Link>
-        ))}
-      </div>
+      {properties.length === 0 ? (
+        <div className="text-center h-full mt-32">
+          <h2 className="text-xl font-semibold mb-5">
+            Oops! Looks like there are no properties to be shown
+          </h2>
+          <p className="mb-3">Add one by clicking button in left top corner</p>
+        </div>
+      ) : (
+        <div className="grid gap-8 xl:gap-3 xl:grid-cols-2">
+          {properties.map((property) => (
+            <Link
+              to={`/app/properties/${property._id}`}
+              key={property?._id || property.name}
+            >
+              <PropertyCard property={property} />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

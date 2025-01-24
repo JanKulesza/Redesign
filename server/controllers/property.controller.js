@@ -1,4 +1,5 @@
 import Property from "../mongodb/models/property.js";
+import User from "../mongodb/models/user.js";
 
 const getAllProperties = async (req, res) => {
   try {
@@ -24,13 +25,18 @@ const getPropertyDetail = async (req, res) => {
   }
 };
 const createProperty = async (req, res) => {
-  const property = req.body;
+  const values = req.body;
   const { filename } = req.file;
 
   try {
-    const newProperty = new Property({ ...property, photo: filename });
-    await newProperty.save();
-    res.status(200).json({ message: "Property created", entity: newProperty });
+    const newProperty = new Property({ ...values, photo: filename });
+    const property = await newProperty.save();
+
+    await User.findByIdAndUpdate(values.creator, {
+      $addToSet: { allProperties: property._id },
+    });
+
+    res.status(200).json({ message: "Property created", entity: property });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
