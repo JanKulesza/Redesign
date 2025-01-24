@@ -3,8 +3,6 @@ import {
   CircleUser,
   LayoutGrid,
   LucideIcon,
-  MessageCircleMore,
-  Star,
   Users,
   X,
 } from "lucide-react";

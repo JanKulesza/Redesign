@@ -7,7 +7,6 @@ import {
   updateProperty,
 } from "../controllers/property.controller.js";
 import multer from "multer";
-import path from "path";
 
 const propertyRouter = Router();
 

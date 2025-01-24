@@ -27,6 +27,11 @@ const formSchema = z
       .string()
       .min(6, { message: "Password must be at least 6 characters." }),
     confirmPassword: z.string().min(4),
+    avatar: z.instanceof(File).refine((file) => file.size <= 10 * 1024 * 1024, {
+      message: "Image size must be less than 10MB. ",
+    }),
+    address: z.string().nonempty("Address is required. "),
+    phone: z.string().nonempty("Phone number is required. "),
   })
   .refine(({ confirmPassword, password }) => confirmPassword === password, {
     message: "Passwords don't match.",
@@ -36,31 +41,53 @@ const formSchema = z
 const RegisterForm = () => {
   const navigate = useNavigate();
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      form.setValue("avatar", file);
+    }
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      address: "",
+      confirmPassword: "",
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      phone: "",
+    },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const { firstName, lastName, email, password } = values;
+    console.log(values);
+
     try {
-      await axios.post("http://localhost:8080/api/v1/auth/register", {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
+      const data = await axios.post(
+        "http://localhost:8080/api/v1/auth/register",
+        {
+          ...values,
+        },
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      console.log(data);
+
       navigate("/login");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error("Error response:", error.response?.data);
-        form.setError("email", {
+        console.error("Error response:", error);
+        form.setError("avatar", {
           message:
             error.response?.data?.message ||
             "An error occurred during registration.",
         });
       } else {
         console.error("Unexpected error:", error);
-        form.setError("email", {
+        form.setError("avatar", {
           message: "An unexpected error occurred.",
         });
       }
@@ -112,6 +139,19 @@ const RegisterForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone number</FormLabel>
+              <FormControl>
+                <Input placeholder="+00123456789" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <div className="flex gap-3 justify-between">
           <FormField
             control={form.control}
@@ -148,6 +188,36 @@ const RegisterForm = () => {
             )}
           />
         </div>
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Address</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter your address" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="avatar"
+          render={() => (
+            <FormItem>
+              <FormLabel>Avatar</FormLabel>
+              <FormControl>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button variant="default" type="submit" className="mt-4">
           Sign Up
         </Button>

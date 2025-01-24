@@ -51,11 +51,20 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, avatar } = req.body;
+    const { firstName, lastName, email, password } = req.body;
+    console.log(req.file);
+
+    const { filename } = req.file;
     if (await User.findOne({ email }))
       return res.status(400).json({ message: "User already exists" });
 
-    const newUser = new User({ firstName, lastName, email, password, avatar });
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+      avatar: filename,
+    });
 
     await newUser.save();
     res.status(201).json({ message: "User registered" });

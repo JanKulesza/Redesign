@@ -51,8 +51,6 @@ const AgentInfo = ({ creatorId }: Props) => {
       </CardTitle>
       <CardDescription className="mb-10">
         <div className="flex flex-col items-center gap-2 text-base">
-          <p>{agent.position}</p>
-
           <p className="flex gap-2">
             <Mail />
             {agent.email}

@@ -28,15 +28,12 @@ const UserAvatar = () => {
       <Avatar className="max-h-[48px] h-[48px] max-w-[48px] w-[48px]">
         <AvatarImage
           src={`http://localhost:8080/api/v1/public/${user.avatar}`}
-          className="rounded-3xl"
+          className="rounded-3xl object-cover"
         />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <div className="text-left hidden lg:flex lg:flex-col justify-center">
         <h5>{user.firstName + " " + user.lastName}</h5>
-        {user.position && (
-          <span className="text-secondary-foreground">{user.position}</span>
-        )}
       </div>
       <ChevronDown className="h-[48px]" />
     </div>
