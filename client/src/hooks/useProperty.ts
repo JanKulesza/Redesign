@@ -14,14 +14,23 @@ export const createProperty = (property: Property) => {
 
 export const useProperties = () => {
   const [properties, setProperties] = useState<Property[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     getAll()
-      .then((data) => setProperties(data))
-      .catch((error) => console.error(error));
+      .then((data) => {
+        setProperties(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error);
+        setIsLoading(false);
+      });
   }, []);
 
-  return properties;
+  return { properties, isLoading, error };
 };
 
 export const useProperty = (id: string) => {
