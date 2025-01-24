@@ -42,7 +42,7 @@ const SideBar = () => {
   return (
     <Sidebar className="w-64 border-none">
       <SidebarHeader className="p-4 pb-8 sm:pr-2/5 bg-background">
-        <Link to={"/"} className="text-4xl w-fit flex gap-2 font-semibold">
+        <Link to={"/app"} className="text-4xl w-fit flex gap-2 font-semibold">
           <img src={logo} alt="logo" />
           Redesign
         </Link>

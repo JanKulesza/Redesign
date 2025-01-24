@@ -9,7 +9,7 @@ const Error = () => {
       <h2 className="text-xl font-semibold">Oops! An error occurred</h2>
       <p>Try refreshing this page or return to home page</p>
       <Button asChild className="mt-3" variant="outline">
-        <Link to={"/"}>Go to Home Page</Link>
+        <Link to={"/app"}>Go to Home Page</Link>
       </Button>
     </div>
   );
