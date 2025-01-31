@@ -1,7 +1,6 @@
 import { useAuth } from "@/context/AuthProvider";
 import { useUser, useAuthUserId } from "@/hooks/useUsers";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { ChevronDown } from "lucide-react";
 import { Navigate } from "react-router";
 import { Skeleton } from "../ui/skeleton";
 
@@ -35,7 +34,6 @@ const UserAvatar = () => {
       <div className="text-left hidden lg:flex lg:flex-col justify-center">
         <h5>{user.firstName + " " + user.lastName}</h5>
       </div>
-      <ChevronDown className="h-[48px]" />
     </div>
   );
 };

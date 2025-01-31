@@ -8,6 +8,8 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   propertiesSold: { type: Number, required: false },
   avatar: { type: String, required: false },
+  phone: { type: String, required: true },
+  address: { type: String, required: true },
   allProperties: [{ type: mongoose.Schema.Types.ObjectId, ref: "Property" }],
 });
 

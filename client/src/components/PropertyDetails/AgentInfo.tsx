@@ -56,7 +56,7 @@ const AgentInfo = ({ creatorId }: Props) => {
             {agent.email}
           </p>
           <p className=" flex gap-2">
-            <MapPinHouse /> {agent.propertiesSold} properties sold
+            <MapPinHouse /> {agent.allProperties.length} properties
           </p>
         </div>
       </CardDescription>

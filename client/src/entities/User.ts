@@ -3,6 +3,8 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  propertiesSold: number;
+  allProperties: string[];
+  address: string;
+  phone: string;
   avatar?: string;
 }

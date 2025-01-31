@@ -14,7 +14,9 @@ import { useUsers } from "@/hooks/useUsers";
 
 const TopAgent = () => {
   const { users } = useUsers();
-  users.sort(({ propertiesSold: a }, { propertiesSold: b }) => b - a);
+  users.sort(
+    ({ allProperties: a }, { allProperties: b }) => b.length - a.length
+  );
 
   return (
     <div className="relative bg-background rounded-2xl p-8">

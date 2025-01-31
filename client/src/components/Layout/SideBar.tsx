@@ -1,6 +1,7 @@
 import {
   Building2,
   CircleUser,
+  DoorOpen,
   LayoutGrid,
   LucideIcon,
   Users,
@@ -14,6 +15,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   useSidebar,
+  SidebarFooter,
 } from "../ui/sidebar";
 import { Link, useLocation } from "react-router";
 import { Button } from "../ui/button";
@@ -59,12 +61,12 @@ const SideBar = () => {
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
-                className={`p-5 py-6 rounded-xl text-secondary-foreground hover:bg-theme ${
+                className={`p-5 py-6 h-12 mb-1 rounded-xl text-secondary-foreground hover:bg-theme ${
                   item.url === pathname ? "bg-theme text-white" : ""
                 } hover:text-white`}
               >
                 <Link to={item.url}>
-                  <item.icon className="mr-2" />
+                  <item.icon className="mr-2 min-w-6 min-h-6" />
                   <span className="text-xl">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
@@ -72,6 +74,17 @@ const SideBar = () => {
           ))}
         </SidebarMenu>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenuButton
+          asChild
+          className="text-red-600 h-12 rounded-xl p-5 hover:bg-red-600 hover:text-white"
+        >
+          <Link to="/logout" className="flex items-center">
+            <DoorOpen className="min-w-7 min-h-7" />
+            <span className="text-xl">Logout</span>
+          </Link>
+        </SidebarMenuButton>
+      </SidebarFooter>
     </Sidebar>
   );
 };
