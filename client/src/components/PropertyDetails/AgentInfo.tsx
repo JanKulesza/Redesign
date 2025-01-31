@@ -1,4 +1,4 @@
-import { Mail, MapPinHouse } from "lucide-react";
+import { Building2, Mail } from "lucide-react";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -8,7 +8,7 @@ import {
   CardFooter,
 } from "../ui/card";
 import { useUser } from "@/hooks/useUsers";
-import { Navigate } from "react-router";
+import { Link, Navigate } from "react-router";
 import { Skeleton } from "../ui/skeleton";
 
 interface Props {
@@ -56,13 +56,13 @@ const AgentInfo = ({ creatorId }: Props) => {
             {agent.email}
           </p>
           <p className=" flex gap-2">
-            <MapPinHouse /> {agent.allProperties.length} properties
+            <Building2 /> {agent.allProperties.length} properties
           </p>
         </div>
       </CardDescription>
       <CardFooter className=" gap-3">
-        <Button variant="secondary" className="w-1/2">
-          View
+        <Button variant="secondary" asChild className="w-1/2">
+          <Link to={`/app/agents/${agent._id}`}>View</Link>
         </Button>
         <Button variant="default" className="w-1/2">
           Message

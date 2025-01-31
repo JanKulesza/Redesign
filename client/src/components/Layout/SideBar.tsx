@@ -74,7 +74,7 @@ const SideBar = () => {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-background">
         <SidebarMenuButton
           asChild
           className="text-red-600 h-12 rounded-xl p-5 hover:bg-red-600 hover:text-white"

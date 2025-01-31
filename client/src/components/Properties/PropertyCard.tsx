@@ -26,7 +26,7 @@ const PropertyCard = ({ property }: Props) => {
         <div className="mb-2">
           <h3 className=" sm:text-xl font-semibold mb-3">{property.name}</h3>
           <p className="flex max-sm:text-xs gap-2 text-secondary-foreground items-center">
-            <MapPin size={20} /> {property.location}
+            <MapPin className="min-w-4" size={20} /> {property.location}
           </p>
         </div>
         <div className="flex gap-2 md:gap-6 max-sm:text-xs">

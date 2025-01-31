@@ -74,7 +74,7 @@ const PropertyDetails = () => {
                 </p>
                 <p className="text-3xl font-semibold mb-3">{property.name}</p>
                 <p className="text-lg text-secondary-foreground flex gap-2 items-center">
-                  <MapPin size={20} /> {property.location}
+                  <MapPin className="min-w-6" size={20} /> {property.location}
                 </p>
               </div>
               <div className="max-sm:flex max-sm:justify-between">
