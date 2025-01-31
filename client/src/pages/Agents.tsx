@@ -1,5 +1,6 @@
 import AgentCard from "@/components/Agents/AgentCard";
 import { useUsers } from "@/hooks/useUsers";
+import { Link } from "react-router";
 
 const Agents = () => {
   const { users: agents, error } = useUsers();
@@ -9,16 +10,15 @@ const Agents = () => {
       {agents.length === 0 ? (
         <div className="text-center h-full mt-32">
           <h2 className="text-xl font-semibold mb-5">
-            Oops! Looks like there are no properties to be shown
+            Oops! Looks like there are no agents to be shown
           </h2>
-          <p className="mb-3">Add one by clicking button in left top corner</p>
         </div>
       ) : (
         <div>
           {agents.map((agent) => (
-            // <Link to={`/app/agents/${agent._id}`} key={agent._id}>
-            <AgentCard key={agent._id} agent={agent} />
-            // </Link>
+            <Link to={`/app/agents/${agent._id}`} key={agent._id}>
+              <AgentCard agent={agent} />
+            </Link>
           ))}
         </div>
       )}

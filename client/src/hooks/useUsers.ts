@@ -32,8 +32,9 @@ export const useUsers = () => {
 };
 
 export const useUser = (userId: string | null) => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>({} as User);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (userId)
       get(userId)
@@ -43,11 +44,12 @@ export const useUser = (userId: string | null) => {
         })
         .catch((error) => {
           console.error(error);
+          setError(error);
           setIsLoading(false);
         });
   }, [userId]);
 
-  return { user, isLoading };
+  return { user, isLoading, error };
 };
 
 export const useAuthUserId = (token: string) => {

@@ -34,8 +34,9 @@ export const useProperties = () => {
 };
 
 export const useProperty = (id: string) => {
-  const [property, setProperty] = useState<Property>();
+  const [property, setProperty] = useState<Property>({} as Property);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     get(id)
       .then((data) => {
@@ -44,9 +45,10 @@ export const useProperty = (id: string) => {
       })
       .catch((error) => {
         console.error(error);
+        setError(error);
         setIsLoading(false);
       });
   }, [id]);
 
-  return { property, isLoading };
+  return { property, isLoading, error };
 };
