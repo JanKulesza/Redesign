@@ -159,7 +159,7 @@ const PropertyDetails = () => {
             </div>
             <div>
               <p className="text-xl font-semibold mb-3">Description </p>
-              <p className="text-secondary-foreground">
+              <p className="text-secondary-foreground whitespace-pre-wrap">
                 {property.description}
               </p>
             </div>

@@ -43,7 +43,7 @@ const AgentInfo = ({ creatorId }: Props) => {
               ? `http://localhost:8080/api/v1/public/${agent.avatar}`
               : "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
           }
-          className="rounded-full w-28 "
+          className="rounded-full w-28 h-28 object-cover"
         />
       </CardHeader>
       <CardTitle className="text-center text-xl mb-5">
