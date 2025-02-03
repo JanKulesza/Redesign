@@ -48,7 +48,7 @@ const PropertyDetails = () => {
 
   const { property, isLoading } = useProperty(id);
   if (isLoading) return;
-  if (!property) return <Navigate to={"/error"} />;
+  if (!property || !property._id) return <Navigate to={"/error"} />;
 
   return (
     <div className="bg-background m-0 p-4 sm:p-10 md:my-10 md:mx-10 lg:mx-36 xl:mx-10 2xl:mx-36 rounded-xl mb-4">
@@ -167,7 +167,7 @@ const PropertyDetails = () => {
         </div>
         {/* Right panel */}
         <div className="flex flex-col gap-8 lg:col-span-1 w-full">
-          <AgentInfo creatorId={property.creator} />
+          <AgentInfo creatorId={property.creator} propertyId={property._id} />
           <div className="relative text-right w-full h-[400px]">
             <div className="overflow-hidden rounded bg-none w-full h-[400px]">
               <iframe

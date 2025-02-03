@@ -7,15 +7,18 @@ import {
   CardDescription,
   CardFooter,
 } from "../ui/card";
-import { useUser } from "@/hooks/useUsers";
+import { useAuthUserId, useUser } from "@/hooks/useUsers";
 import { Link, Navigate } from "react-router";
 import { Skeleton } from "../ui/skeleton";
+import { useAuth } from "@/context/AuthProvider";
+import DeleteDialog from "./DeleteDialog";
 
 interface Props {
   creatorId: string;
+  propertyId: string;
 }
 
-const AgentInfo = ({ creatorId }: Props) => {
+const AgentInfo = ({ creatorId, propertyId }: Props) => {
   const { user: agent, isLoading } = useUser(creatorId);
   if (isLoading)
     return (
@@ -33,7 +36,10 @@ const AgentInfo = ({ creatorId }: Props) => {
       </Card>
     );
   if (!agent) return <Navigate to="/error" />;
-
+  let allowEdit = false;
+  const { token } = useAuth();
+  if (propertyId && token && agent._id === useAuthUserId(token))
+    allowEdit = true;
   return (
     <Card className="bg-background xl:h-[500px] lg:col-span-2 py-2 flex w-full flex-col gap-5 justify-center">
       <CardHeader className=" mx-auto ">
@@ -61,12 +67,22 @@ const AgentInfo = ({ creatorId }: Props) => {
         </div>
       </CardDescription>
       <CardFooter className=" gap-3">
-        <Button variant="secondary" asChild className="w-1/2">
-          <Link to={`/app/agents/${agent._id}`}>View</Link>
-        </Button>
-        <Button variant="default" className="w-1/2">
-          Message
-        </Button>
+        {allowEdit ? (
+          <Button variant="default" asChild className="w-1/2">
+            <Link to={`/app/properties/edit/${propertyId}`}>Edit</Link>
+          </Button>
+        ) : (
+          <Button variant="secondary" asChild className="w-1/2">
+            <Link to={`/app/agents/${agent._id}`}>View</Link>
+          </Button>
+        )}
+        {allowEdit ? (
+          <DeleteDialog propertyId={propertyId} />
+        ) : (
+          <Button variant="default" className="w-1/2">
+            Message
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

@@ -43,7 +43,20 @@ const createProperty = async (req, res) => {
   }
 };
 const updateProperty = async (req, res) => {};
-const deleteProperty = async (req, res) => {};
+const deleteProperty = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!id) throw new Error("Id is undefined");
+
+    const data = await Property.deleteOne({ _id: id });
+    if (data.acknowledged)
+      return res.status(200).json({ message: "Item deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 export {
   getAllProperties,

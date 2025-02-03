@@ -2,7 +2,7 @@ import { Property } from "@/entities/Property";
 import APIClient from "@/services/api-client";
 import { useEffect, useState } from "react";
 
-const { create, get, getAll } = new APIClient<Property>("/properties");
+const { create, get, getAll, remove } = new APIClient<Property>("/properties");
 
 export const createProperty = (property: Property) => {
   const data = create(property, {
@@ -10,6 +10,16 @@ export const createProperty = (property: Property) => {
   }).catch((error) => console.error(error));
 
   return data;
+};
+
+export const removeProperty = async (id: string): Promise<boolean> => {
+  try {
+    const res = await remove(id);
+    return res.status === 200;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 };
 
 export const useProperties = () => {

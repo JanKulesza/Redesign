@@ -20,6 +20,12 @@ class APIClient<T> {
       .post<{ message: string; entity: T }>(this.endpoint, entity, config)
       .then((res) => res.data);
   };
+  remove = (id: string) => {
+    if (this.endpoint !== "/properties") {
+      throw new Error(`Remove  method is not supported for ${this.endpoint}`);
+    }
+    return apiClient.delete<{ message: string }>(`${this.endpoint}/${id}`);
+  };
 }
 
 export default APIClient;
